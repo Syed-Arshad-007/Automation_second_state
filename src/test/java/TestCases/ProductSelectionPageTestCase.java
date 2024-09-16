@@ -20,6 +20,10 @@ public class ProductSelectionPageTestCase extends CommonFunctions {
     @Test
     public void productSelectionPage() {
 
+        testCase = extentReport.createTest("Product selection page testcase started Successfully");
+        testCase = extentReport.createTest("Product selection page testcase completed Successfully");
+
+
         //Product Selection Page
         PageFactory.initElements(driver, ProductSelectionPageObjects.class);
 

@@ -21,6 +21,10 @@ public class PolicyDetailsPageTestCase extends CommonFunctions {
     @Test
     public void policyDetailsPage() {
 
+        testCase = extentReport.createTest("Policy Details page testcase started Successfully");
+        testCase = extentReport.createTest("Policy Details page testcase completed Successfully");
+
+
      /*   //Underwriter Page --------------------------------------
         PageFactory.initElements(driver, UnderwriterPageObjects.class);
 

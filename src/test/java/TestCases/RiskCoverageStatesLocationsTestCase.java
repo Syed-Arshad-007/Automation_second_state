@@ -26,6 +26,10 @@ public class RiskCoverageStatesLocationsTestCase extends CommonFunctions {
     @Test
     public void riskCoverageStatesLocationsPage() {
 
+        testCase = extentReport.createTest("States & Locations page testcase started Successfully");
+        testCase = extentReport.createTest("States & Locations page testcase completed Successfully");
+
+
         //RiskCoverage states & Locations page
         PageFactory.initElements(driver, RiskCoverageStatesLocationsPageObjects.class);
 
@@ -90,6 +94,7 @@ public class RiskCoverageStatesLocationsTestCase extends CommonFunctions {
         loaderValidation();
         visibilityOf(RiskCoverageStatesLocationsPageObjects.classificationAddIcon);
         loaderValidation();
+        actions.pause(Duration.ofSeconds(1)).perform();
         RiskCoverageStatesLocationsPageObjects.classificationAddIcon.click();
         //Thread.sleep(1000);
 

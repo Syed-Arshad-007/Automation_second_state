@@ -60,6 +60,9 @@ public class UnderwriterTestCase extends CommonFunctions {
     @Test
     public void underwriterPage() throws IOException {
 
+        testCase = extentReport.createTest("Underwriter page testcase started Successfully");
+        testCase = extentReport.createTest("Underwriter page testcase completed Successfully");
+
         //Underwriter Page --------------------------------------
         PageFactory.initElements(driver, UnderwriterPageObjects.class);
 

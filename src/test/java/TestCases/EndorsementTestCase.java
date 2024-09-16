@@ -9,6 +9,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import java.io.IOException;
 import java.time.Duration;
 
 import static CommonFunctions.CommonFunctions.waitToBeClickable;
@@ -19,8 +20,10 @@ public class EndorsementTestCase extends CommonFunctions {
     static Actions actions;
 
     @Test
-    public static void endrorsementTestCase() {
+    public static void endrorsementTestCase() throws IOException {
 
+     testCase = extentReport.createTest("Endorsement  testcase started Successfully");
+     testCase = extentReport.createTest("Endorsement testcase completed Successfully");
 
         //Account Page_______________________________________________________________________________
         PageFactory.initElements(driver, EndorsementPageObjects.class);
@@ -28,8 +31,8 @@ public class EndorsementTestCase extends CommonFunctions {
         //Submission Number
         loaderValidation();
         waitToBeClickable(EndorsementPageObjects.subNumberEndorsement);
-        String submissionNumberEndorsement = EndorsementPageObjects.subNumberEndorsement.getText();
-        System.out.println(submissionNumberEndorsement);
+      //  System.out.println(submissionNumberEndorsement);
+       writeTestResultsinExcelEndosub();
 
         //Submission Type
         loaderValidation();
@@ -224,8 +227,7 @@ public class EndorsementTestCase extends CommonFunctions {
         loaderValidation();
         actions.pause(Duration.ofSeconds(2));
         waitToBeClickable(EndorsementPageObjects.quoteNumberEndo);
-        String quoteNumberEndo = EndorsementPageObjects.quoteNumberEndo.getText();
-        System.out.println("Quote Number Endorsement = " + quoteNumberEndo);
+        writeTestResultsinExcelEndoquote();
 
 
         //Create Quote page__________________________________________________________________________
@@ -290,8 +292,8 @@ public class EndorsementTestCase extends CommonFunctions {
         //Policy Number After Issue
         loaderValidation();
         visiblityOfElement(EndorsementPageObjects.policyNumberAfterIssuePolicy);
-        String policyNumber = EndorsementPageObjects.policyNumberAfterIssuePolicy.getText();
-        System.out.println(policyNumber);
+        //System.out.println(policynumberEndo);
+        writeTestResultsinExcelEndopolicy();
 
         //policy Issuance Button
         // IssuePolicyPageObjects.policyIssuanceButton.click();

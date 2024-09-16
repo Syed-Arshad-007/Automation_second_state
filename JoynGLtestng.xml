@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="All Test Suite">
-    <test verbose="2" preserve-order="true" name="C:/Users/syedmohammed_a/Joyn GL/src/test">
+    <listeners>
+        <listener class-name="CommonFunctions.Transformer"></listener>
+    </listeners>
+    <test verbose="2" preserve-order="true" name="Joyn GL Endorsement and Renewal Test Cases">
         <classes>
             <class name="TestCases.AccountPageTestcase"/>
             <class name="TestCases.UnderwriterTestCase"/>
             <class name="TestCases.PolicyDetailsPageTestCase"/>
-        //    <class name="TestCases.RiskCoverageStatesLocationsTestCase"/>
+            <class name="TestCases.RiskCoverageStatesLocationsTestCase"/>
             <class name="TestCases.ProductSelectionPageTestCase"/>
             <class name="TestCases.CreateQuotePageTestCase"/>
             <class name="TestCases.BoundPageTestCase"/>

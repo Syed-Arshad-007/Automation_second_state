@@ -11,6 +11,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import java.io.IOException;
 import java.time.Duration;
 
 import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
@@ -20,8 +21,10 @@ public class RenewalTestCase extends CommonFunctions {
     static Actions actions;
 
     @Test
-    public static void renewalTestCase() {
+    public static void renewalTestCase() throws IOException {
 
+        testCase = extentReport.createTest("Renewal testcase started Successfully");
+        testCase = extentReport.createTest("Renewal testcase completed Successfully");
 
         //Account Page_______________________________________________________________________________
         PageFactory.initElements(driver, RenewalPageObjects.class);
@@ -30,8 +33,8 @@ public class RenewalTestCase extends CommonFunctions {
         //Submission Number
         loaderValidation();
         waitToBeClickable(RenewalPageObjects.subNumberRenewal);
-        String submissionNumberRenewal = RenewalPageObjects.subNumberRenewal.getText();
-        System.out.println("Submission Number Renewal = " + submissionNumberRenewal);
+       // System.out.println("Submission Number Renewal = " + submissionNumberRenewal);
+        writeTestResultsinExcelRensub();
 
         //Submission Type
         loaderValidation();
@@ -233,8 +236,8 @@ public class RenewalTestCase extends CommonFunctions {
 
         //Quote Number
         loaderValidation();
-        String quoteNumberRenewal = RenewalPageObjects.quoteNumberRenewal.getText();
-        System.out.println("Quote Number Renewal = " + quoteNumberRenewal);
+        //System.out.println("Quote Number Renewal = " + quoteNumberRenewal);
+       writeTestResultsinExcelRenquote();
 
 
         //Create Quote page__________________________________________________________________________
@@ -298,8 +301,8 @@ public class RenewalTestCase extends CommonFunctions {
         //Policy Number After Issue
         loaderValidation();
         visiblityOfElement(RenewalPageObjects.policyNumberAfterIssuePolicy);
-        String policyNumber = RenewalPageObjects.policyNumberAfterIssuePolicy.getText();
-        System.out.println(policyNumber);
+        //System.out.println(policynumberRenewal);
+       writeTestResultsinExcelRenpolicy();
 
 
     }

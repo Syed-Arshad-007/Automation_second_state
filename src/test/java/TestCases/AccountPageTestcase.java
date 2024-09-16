@@ -4,6 +4,7 @@ import CommonFunctions.CommonFunctions;
 import PageObjects.AccountPageObjects;
 import PageObjects.LoginPageObjects;
 import PageObjects.PolicyDetailsPageObjects;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.interactions.Pause;
@@ -15,6 +16,7 @@ import org.testng.annotations.Test;
 
 import java.io.IOException;
 import java.time.Duration;
+import java.util.Map;
 
 import static CommonFunctions.CommonFunctions.driver;
 import static CommonFunctions.CommonFunctions.properties;
@@ -35,14 +37,18 @@ public class AccountPageTestcase extends CommonFunctions {
     }
 
     @Test(dataProvider = "AccountPageData")
-    public void accountPage(String AccountName,String DBAName,String Address,String	NAICSCode,String	NAICSDescription,String	IntelliScore,String	FinancialStabilityScore
-    ) throws IOException, InterruptedException {
+    public void accountPage(Map<String, String> accountpagedata) throws IOException, InterruptedException {
 
         //Login
         login();
+        Logger logger = Logger.getLogger("AccountPageTestcase.class");
+        logger.info("Login takes place successfully");
+        testCase = extentReport.createTest("Account page testcase started Successfully");
+        testCase = extentReport.createTest("Account page testcase completed Successfully");
 
         AccountPageObjects account = new AccountPageObjects(driver);
-        account.accountPage(AccountName,DBAName,Address,NAICSCode,NAICSDescription,IntelliScore,FinancialStabilityScore);
+        account.accountPage(accountpagedata);
+
 
 
     }

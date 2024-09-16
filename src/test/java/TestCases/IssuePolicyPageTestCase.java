@@ -6,11 +6,15 @@ import PageObjects.IssuePolicyPageObjects;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.annotations.Test;
 
+import java.io.IOException;
+
 
 public class IssuePolicyPageTestCase extends CommonFunctions {
 
     @Test
-    public static void issuePolicyPage() {
+    public static void issuePolicyPage() throws IOException {
+        testCase = extentReport.createTest("Issue policy page testcase started Successfully");
+        testCase = extentReport.createTest("Issue policy page testcase completed Successfully");
 
 
         //Issue Policy Page
@@ -18,8 +22,8 @@ public class IssuePolicyPageTestCase extends CommonFunctions {
 
         loaderValidation();
         visiblityOfElement(IssuePolicyPageObjects.policyNumberAfterIssuePolicy);
-        String policyNumber = IssuePolicyPageObjects.policyNumberAfterIssuePolicy.getText();
-        System.out.println(policyNumber);
+       // System.out.println(policyNumber);
+        writeTestResultsinExcelPolicy();
 
         //policy Issuance Button
         // IssuePolicyPageObjects.policyIssuanceButton.click();

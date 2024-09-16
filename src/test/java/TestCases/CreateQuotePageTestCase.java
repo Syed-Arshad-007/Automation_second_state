@@ -11,6 +11,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
 
+import java.io.IOException;
 import java.time.Duration;
 
 import static TestCases.AccountPageTestcase.login;
@@ -19,7 +20,10 @@ public class CreateQuotePageTestCase extends CommonFunctions {
 
 
     @Test
-    public static void createQuotePage() {
+    public static void createQuotePage() throws IOException {
+
+        testCase = extentReport.createTest("Create Quote page testcase started Successfully");
+        testCase = extentReport.createTest("Create Quote page testcase completed Successfully");
 
         //Create Quote page
         PageFactory.initElements(driver, CreateQuotePageObjects.class);
@@ -27,10 +31,11 @@ public class CreateQuotePageTestCase extends CommonFunctions {
         //Quote Number
         loaderValidation();
         actions.pause(Duration.ofSeconds(1));
-        String quoteNumber = CreateQuotePageObjects.quoteNumber.getText();
-        System.out.println("Quote Number NB = " + quoteNumber);
+       // String quoteNumber = CreateQuotePageObjects.quoteNumber.getText();
+      //  System.out.println("Quote Number NB = " + quoteNumber);
+          writeTestResultsinExcelQuote();
 
-        //Quote Proposal Button
+          //Quote Proposal Button
         //CreateQuotePageObjects.quoteProposalButton.click();
 
         //Actions Button and Bind Quote

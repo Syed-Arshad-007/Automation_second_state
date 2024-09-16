@@ -1,21 +1,28 @@
 package PageObjects;
 
+import CommonFunctions.CommonFunctions;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
+import org.testng.annotations.Test;
 
 import java.io.IOException;
 import java.time.Duration;
+import java.util.Map;
 
 import static CommonFunctions.CommonFunctions.*;
 import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOf;
 
-public class AccountPageObjects {
+public class AccountPageObjects extends CommonFunctions {
 
     WebDriver driver;
+
+    static Logger logger = Logger.getLogger("AccountPageObjects.class");
 
     @FindBy(xpath = "//a[contains(text(),'Start New Submission')]")
     public static WebElement startNewSubmissionLink;
@@ -104,16 +111,17 @@ public class AccountPageObjects {
         PageFactory.initElements(driver, this);
     }
 
-    public void accountPage(String accountname,String dbaname,String address,String naicscode,String naicsdescription,String inteliscore,String financialtstabilityscore) throws IOException, InterruptedException {
+    public void accountPage(Map<String,String> accountpagedata) throws IOException, InterruptedException {
 
         //Explicit wait
         actions = new Actions(driver);
 
-
+        logger.info("Home page displayed successfully");
         //Start New Submission Link
         waitToBeClickable(startNewSubmissionLink);
         AccountPageObjects.startNewSubmissionLink.click();
 
+        logger.info("Account page started");
         //Lob Selection
         visiblityOfElement(AccountPageObjects.selectLobOutputText);
         AccountPageObjects.lobSelection.click();
@@ -124,16 +132,16 @@ public class AccountPageObjects {
 
         //Account Name
         loaderValidation();
-        AccountPageObjects.accountName.sendKeys(accountname);
+        AccountPageObjects.accountName.sendKeys(accountpagedata.get("AccountName"));
 
         //DBA Name
         waitToBeClickable(AccountPageObjects.dbaName);
-        AccountPageObjects.dbaName.sendKeys(dbaname);
+        AccountPageObjects.dbaName.sendKeys(accountpagedata.get("DBAName"));
 
         //Address
         visiblityOfElement(AccountPageObjects.dbaName);
         waitToBeClickable(AccountPageObjects.address);
-        AccountPageObjects.address.sendKeys(address);
+        AccountPageObjects.address.sendKeys(accountpagedata.get("Address"));
         actions.pause(Duration.ofSeconds(2)).perform();
         loaderValidation();
         AccountPageObjects.address.sendKeys(Keys.ARROW_DOWN);
@@ -155,16 +163,16 @@ public class AccountPageObjects {
         AccountPageObjects.businessStDateOkButton.click();
 
         //Naics Code
-        AccountPageObjects.naicsCode.sendKeys(naicscode);
+        AccountPageObjects.naicsCode.sendKeys(accountpagedata.get("NAICSCode"));
 
         //Naics Description
-        AccountPageObjects.naicsDescription.sendKeys(naicsdescription);
+        AccountPageObjects.naicsDescription.sendKeys(accountpagedata.get("NAICSDescription"));
 
         //IntelliScore
-        AccountPageObjects.intelliscore.sendKeys(inteliscore);
+        AccountPageObjects.intelliscore.sendKeys(accountpagedata.get("IntelliScore"));
 
         //Financial Stability Score
-        AccountPageObjects.financialStabilityScore.sendKeys(financialtstabilityscore);
+        AccountPageObjects.financialStabilityScore.sendKeys(accountpagedata.get("FinancialStabilityScore"));
 
         //Agency Name
         waitToBeClickable(AccountPageObjects.agencyName);
@@ -190,11 +198,13 @@ public class AccountPageObjects {
         loaderValidation();
         actions.moveToElement(AccountPageObjects.createSubmissionButton).click().build().perform();
 
-
+         logger.info("submission number generated");
         //Submission Number
         waitToBeClickable(AccountPageObjects.subNumber);
-        String submissionNumber = AccountPageObjects.subNumber.getText();
-        System.out.println(submissionNumber);
+       // String submissionNumber = AccountPageObjects.subNumber.getText();
+        writeTestResultsinExcel();
+
+       // Assert.assertEquals("True","false");
 
 
     }
